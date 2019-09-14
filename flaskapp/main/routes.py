@@ -3,6 +3,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from flaskapp import db, bcrypt, login_manager
 from flaskapp.main.forms import RegistrationForm, LoginForm
 from flaskapp.models import User, Post
+from flaskapp.main.nlp import get_sentiment_score, get_document
 
 main = Blueprint("main", __name__)
 
@@ -59,7 +60,6 @@ def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
 
 # Api
-
 @main.route("/user")
 def posts():
     user_id = request.args.get('id', type=int)
@@ -83,6 +83,3 @@ def new_post():
     post = Post(title=title, entry=content, author=found_user)
     db.session.add(post)
     db.session.commit()
-
-# Helper Functions
-
