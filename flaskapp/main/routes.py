@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, request
+from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from flaskapp import db, bcrypt, login_manager
 from flaskapp.main.forms import RegistrationForm, LoginForm
@@ -58,5 +58,31 @@ def logout():
 def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
 
+# Api
 
+@main.route("/user")
+def posts():
+    user_id = request.args.get('id', type=int)
+    found_user = User.query.filter_by(id=user_id).first()
+    posts_json = []
+    for post in found_user.posts:
+        posts_json.append({"post_id":post.id, "title":post.title, "entry":post.entry,
+         "score":post.score, "date":(str(post.date.year).zfill(4) + "-" + str(post.date.month).zfill(2) + "-" + str(post.date.day).zfill(2))})
+    return jsonify(
+        posts=posts_json,
+        username=found_user.username,
+        user_id=found_user.id
+    )
+
+@main.route("/new_post", methods=['GET', 'POST'])
+def new_post():
+    user_id = request.args.get('id', type=int)
+    found_user = User.query.filter_by(id=user_id).first()
+    title = request.args.get('title', type=str)
+    content = request.args.get('content', type=str)
+    post = Post(title=title, entry=content, author=found_user)
+    db.session.add(post)
+    db.session.commit()
+
+# Helper Functions
 
