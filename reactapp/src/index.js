@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import Login from './Login'
 import Register from './Register'
+import './Index.css';
 
 const routing = (
   <Router basename="#">
