@@ -84,5 +84,4 @@ def new_post():
     db.session.add(post)
     db.session.commit()
 
-# Helper Functions
 
