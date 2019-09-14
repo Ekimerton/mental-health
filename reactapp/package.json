@@ -4,14 +4,16 @@
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.17",
+    "chart.js": "^2.8.0",
     "draft-js": "^0.11.0",
     "immutable": "^4.0.0-rc.12",
     "react": "^16.9.0",
+    "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.9.0",
+    "react-icons-kit": "^1.1.6",
     "react-scripts": "3.1.1",
     "slate": "^0.34.5",
-    "slate-react": "^0.13.2",
-    "react-icons-kit": "^1.1.6"
+    "slate-react": "^0.13.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,25 +1,17 @@
 import React from 'react';
 import { TextEditor } from "./components/Editor";
 import Title from "./components/Right/Title";
+import Graph from "./components/Graph/Graph";
 
 class App extends React.Component{
     render() {
         return <div>
-            {/*<TextEditor style={{*/}
-                {/*color: "rgb(17, 17, 17)",*/}
-                {/*maxWidth: "740px",*/}
-                {/*backgroundColor: "rgb(255, 255, 255)",*/}
-                {/*boxShadow: "rgba(118, 143, 255, 0.1) 0px 16px 24px 0px",*/}
-                {/*padding: "40px",*/}
-                {/*margin: "65px auto 45px",*/}
-                {/*borderRadius: "4.5px"*/}
-            {/*}} />*/}
-
             <div style={{
                 width:"40%",
                 padding:"5%",
                 float:"left"
             }}>
+                <Graph/>
             </div>
             <div style={{
                 width:"40%",
