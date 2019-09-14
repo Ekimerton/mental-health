@@ -1,0 +1,54 @@
+/*styles for DatePicker*/
+
+.react-calendar {
+    background: transparent !important;
+    border: none !important;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+    color: #301934 !important;
+}
+
+.react-calendar__navigation button[disabled] {
+    background-color: #F5F5F5 !important;
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+}
+
+.react-calendar__tile:disabled {
+    background-color: #F5F5F5 !important;
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+}
+
+.react-calendar__tile {
+    max-width: 100%;
+    text-align: center;
+    padding: 0.75em 0.5em;
+    color: #301934 !important;
+}
+
+.react-calendar__tile--active {
+    background: #9370DB !important;
+}
+
+.react-calendar__tile--hasActive {
+    background: #9370DB !important;
+}
+
+.react-calendar button {
+    color: #301934 !important;
+}
+
+.good-mood {
+     background: #90EE90;
+ }
+.medium-mood {
+    background: #FFA500;
+}
+.bad-mood {
+    background: #FF0000;
+}
+.no-entry {
+    background: transparent;
+}

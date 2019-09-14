@@ -1,5 +1,6 @@
 import React from 'react';
 import Editor from "./components/Editor/Editor";
+import Graph from "./components/Graph/Graph";
 
 function App() {
   return (
