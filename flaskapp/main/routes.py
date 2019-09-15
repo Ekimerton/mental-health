@@ -54,7 +54,7 @@ def logout():
 def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
 
-@main.route("/post")
+@main.route("/post", methods=['GET', 'POST'])
 def post():
     form = PostForm()
     if form.validate_on_submit():
