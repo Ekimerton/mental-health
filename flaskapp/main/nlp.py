@@ -13,9 +13,6 @@ if not endpoint_var_name in os.environ:
     raise Exception('Please set/export the environment variable: '.format(endpoint_var_name))
 endpoint = os.environ[endpoint_var_name]
 
-print("subscription-key: " + subscription_key)
-print("endpoint: " + endpoint)
-
 def get_document(post):
     data = {
         "documents": [{
