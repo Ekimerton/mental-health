@@ -19,7 +19,8 @@ class Calendar extends Component {
         super(props);
         this.state = {
             today: new Date(),
-            selectedDate : new Date()
+            selectedDate : new Date(),
+            data: null,
         };
         this.onClickDay = this.onClickDay.bind(this);
         this.setMoodColor = this.setMoodColor.bind(this);
@@ -28,7 +29,8 @@ class Calendar extends Component {
     componentDidMount() {
         fetch('http://mental-health-api.herokuapp.com/get_calendar')
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => this.setState({ data }));
+        console.log(this.state.data);
     }
 
     // onClickDay(date) sets the selectedDate and opens the corresponding entry
