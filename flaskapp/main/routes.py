@@ -75,7 +75,7 @@ def posts():
         try:
             posts_json.append({"post_id":post.id, "title":post.title, "entry":post.entry,
             "score":post.score, "date":(str(post.date.year).zfill(4) + "-" + str(post.date.month).zfill(2) + "-" + str(post.date.day).zfill(2))})
-        else:
+        except:
             posts_json.append({"post_id":post.id, "title":post.title, "entry":post.entry,
             "score":post.score, "date":post.date})
     return jsonify(
