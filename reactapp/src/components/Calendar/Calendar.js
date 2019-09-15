@@ -2,15 +2,8 @@ import React, {Component} from 'react';
 import DatePicker from 'react-calendar';
 import './Calendar.css';
 
-// dummy data for now
-let moodData = [
-    ["2019-09-14", 60],
-    ["2019-09-13", 70],
-    ["2019-09-12", 75],
-    ["2019-09-11", 80],
-    ["2019-09-10", 90],
-    ["2019-09-09", 70],
-];
+// data
+let moodData;
 
 class Calendar extends Component {
 
@@ -29,8 +22,9 @@ class Calendar extends Component {
         fetch('http://mental-health-api.herokuapp.com/get_calendar')
             .then(response => response.json())
             .then((data) => {
-                console.log(data)
-            })
+                this.setState( data )
+            });
+        moodData = this.state.post;
     }
 
     // onClickDay(date) sets the selectedDate and opens the corresponding entry
@@ -47,9 +41,9 @@ class Calendar extends Component {
         let entryScore;
         for (let i = 0; i < moodData.length; i++){
             // loop through array until matching entry
-            if (moodData[i][0] === entryDate){
+            if (moodData[i].date === entryDate){
                 // sets mood rate of the entry
-                entryScore = moodData[i][1];
+                entryScore = moodData[i].score;
                 break;
             }
         }
