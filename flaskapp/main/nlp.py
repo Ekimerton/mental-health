@@ -1,5 +1,6 @@
 import os
 import requests
+import json
 
 # you are going to have to run source azure_env.sh
 
@@ -28,7 +29,8 @@ def get_sentiment_score(document):
         "Content-Type": "application/json"
     }
     response = requests.post(endpoint, headers=headers, json=document)
-    sentiments = response.json()
-    print(sentiments)
+
+    sentiments = json.loads(response.text)
+    print(sentiments["documents"][0]["score"])
 
 # get_sentiment_score(get_document("i'm really happy"))
