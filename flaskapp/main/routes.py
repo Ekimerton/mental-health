@@ -9,14 +9,9 @@ main = Blueprint("main", __name__)
 
 @main.route('/', methods=['GET', 'POST'])
 def default():
-    return render_template('build/index.html')
-
-@main.route('/home', methods=['GET', 'POST'])
-def home():
-    if current_user.is_authenticated:
-        return render_template("home.html", curr=current_user.username)
-    else:
-        return render_template("home.html")
+    if not current_user.is_authenticated:
+        return redirect(url_for('main.landing'))
+    return render_template('public/index.html')
 
 @main.route('/landing', methods=['GET', 'POST'])
 def landing():
@@ -46,7 +41,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for("main.home"))
+            return redirect(next_page) if next_page else redirect(url_for("main.default"))
         flash(f"Login unsuccessful. Please check your email and password!", "danger")
     return render_template("login.html", form=form)
 
@@ -62,8 +57,7 @@ def load_user(user_id):
 # Api
 @main.route("/user")
 def posts():
-    user_id = request.args.get('id', type=int)
-    found_user = User.query.filter_by(id=user_id).first()
+    found_user = current_user
     posts_json = []
     for post in found_user.posts:
         posts_json.append({"post_id":post.id, "title":post.title, "entry":post.entry,
@@ -76,18 +70,17 @@ def posts():
 
 @main.route("/new_post", methods=['GET', 'POST'])
 def new_post():
-    user_id = request.args.get('id', type=int)
-    found_user = User.query.filter_by(id=user_id).first()
+    found_user = current_user
     title = request.args.get('title', type=str)
     content = request.args.get('content', type=str)
     post = Post(title=title, entry=content, author=found_user)
     db.session.add(post)
     db.session.commit()
+    return redirect(url_for('main.default'))
 
 @main.route("/get_calendar", methods=['GET', 'POST'])
 def get_calendar():
-    user_id = request.args.get('id', type=int)
-    found_user = User.query.filter_by(id=user_id).first()
+    found_user = current_user
     posts_json = []
     for post in found_user.posts:
         posts_json.append({'score':post.score, "date":(str(post.date.year).zfill(4) + "-" + str(post.date.month).zfill(2) + "-" + str(post.date.day).zfill(2))})
@@ -97,14 +90,14 @@ def get_calendar():
 
 @main.route("/custom_post", methods=['GET', 'POST'])
 def custom_post():
-    user_id = request.args.get('id', type=int)
-    found_user = User.query.filter_by(id=user_id).first()
+    found_user = current_user
     title = request.args.get('title', type=str)
     content = request.args.get('content', type=str)
     date = request.args.get('date', type=str)
     post = Post(title=title, entry=content, author=found_user, date=date)
     db.session.add(post)
     db.session.commit()
+    return redirect(url_for('main.default'))
 
 # Create db
 

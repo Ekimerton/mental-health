@@ -5,8 +5,6 @@ import Graph from "./components/Graph/Graph";
 import Calendar from "./components/Calendar/Calendar";
 
 class App extends React.Component{
-
-
     render() {
         return <div>
             <div style={{
