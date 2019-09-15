@@ -28,7 +28,7 @@
                 <table class="w-100">
                     <tr>
                         <td width="59.5%">
-                            <div class="form-group pull-right">
+                            <div class="form-group" style="float:right">
                                 {{ form.password.label(class="form-control-label") }}
                                 {% if form.password.errors %}
                                 {{ form.password(class="form-control form-control-lg is-invalid") }}
@@ -43,7 +43,7 @@
                             </div>
                         </td>
                         <td width="40.5%">
-                            <div class="form-check pull-right">
+                            <div class="form-check" style="float:right">
                                 {{ form.remember(class="form-check-input") }}
                                 {{ form.remember.label(class="form-check-label") }}
                             </div>
