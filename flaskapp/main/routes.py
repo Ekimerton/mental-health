@@ -101,7 +101,7 @@ def get_calendar():
     posts_json = []
     for post in found_user.posts:
         posts_json.append({'score':post.score, "date":(str(post.date.year).zfill(4) + "-" + str(post.date.month).zfill(2) + "-" + str(post.date.day).zfill(2))})
-        posts_json = sorted(posts_json, key = lambda i: (i['date']))
+        posts_json = sorted(posts_json, key = lambda i: (i['date']),reverse=True)
     return jsonify(
         posts=posts_json
     )
