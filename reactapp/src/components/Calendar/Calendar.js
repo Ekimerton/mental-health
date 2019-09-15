@@ -36,7 +36,6 @@ class Calendar extends Component {
         // format given date
         let entryDate = date.toISOString().substr(0, 10);
         let entryScore;
-        console.log(this.state.posts[0].date);
         for (let i = 0; i < this.state.posts.length; i++){
             // loop through array until matching entry
             console.log(this.state.posts[i].date);
