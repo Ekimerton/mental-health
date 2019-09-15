@@ -66,7 +66,7 @@ class Calendar extends Component {
                     // select an entry
                     onClickDay={this.onClickDay}
                     // sets the mood coloring scale
-                    tileClassName={this.setMoodColor()}
+                    tileClassName={this.setMoodColor}
                     className={"w-100"}
                 />
             </div>
