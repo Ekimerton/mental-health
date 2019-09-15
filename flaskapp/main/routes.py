@@ -58,8 +58,8 @@ def load_user(user_id):
 def post():
     form = PostForm()
     if form.validate_on_submit():
-        print(get_sentiment_score(get_document(form.content.data)))
-        post = Post(title=form.title.data, entry=form.content.data, author=current_user, score=get_sentiment_score(get_document(form.content.data)) * 100) 
+        score = get_sentiment_score(get_document(form.content.data)) * 100
+        post = Post(title=form.title.data, entry=form.content.data, author=current_user, score=score) 
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.default'))
@@ -84,7 +84,8 @@ def new_post():
     found_user = current_user
     title = request.args.get('title', type=str)
     content = request.args.get('content', type=str)
-    post = Post(title=title, entry=content, author=found_user, score=get_sentiment_score(get_document(content)) * 100)
+    score = get_sentiment_score(get_document(form.content.data)) * 100
+    post = Post(title=title, entry=content, author=found_user, score=score)
     db.session.add(post)
     db.session.commit()
     return redirect(url_for('main.default'))
