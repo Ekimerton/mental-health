@@ -133,6 +133,7 @@ export default class TextEditor extends Component {
         console.log(this.state.value.document.text);
         // send the request
         xhr.send()
+        window.location.reload();
     }
 
 

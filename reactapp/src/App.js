@@ -3,6 +3,7 @@ import { TextEditor } from "./components/Editor";
 import Title from "./components/Right/Title";
 import Graph from "./components/Graph/Graph";
 import Calendar from "./components/Calendar/Calendar";
+import TitleList from "./TitleList"
 
 class App extends React.Component{
     render() {
@@ -44,6 +45,7 @@ class App extends React.Component{
                 float:"left",
             }}>
                 <Title title="+ Create New Post" editable="True"/>
+                <TitleList />
                 <Title title="Went to my First Hackathon!" rating="84%" date="September 3rd, 2018" editable="False"/>
                 <Title title="Won my First Hackathon" rating="100%" date="September 3rd, 2018" editable="False"/>
                 <Title title="School is hard"  rating="22%" date="September 3rd, 2018" editable="False"/>
