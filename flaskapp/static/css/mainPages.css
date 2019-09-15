@@ -5,9 +5,6 @@
 .text-center{
     text-align: center;
 }
-.pull-right{
-    float: right;
-}
 .w-100{
     width: 100%;
 }
@@ -19,13 +16,4 @@
 }
 .m-t-10{
     margin-top: 10px;
-}
-.m-l-35{
-    margin-left: 35px;
-}
-.m-l-5{
-    margin-left: 5px;
-}
-.m-r-58{
-    margin-right: 58px;
 }
