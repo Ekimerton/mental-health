@@ -71,8 +71,7 @@ def posts():
 
 @main.route("/new_post", methods=['GET', 'POST'])
 def new_post():
-    user_id = request.args.get('id', type=int)
-    found_user = User.query.filter_by(id=user_id).first()
+    found_user = current_user
     title = request.args.get('title', type=str)
     content = request.args.get('content', type=str)
     post = Post(title=title, entry=content, author=found_user)
@@ -91,8 +90,7 @@ def get_calendar():
 
 @main.route("/custom_post", methods=['GET', 'POST'])
 def custom_post():
-    user_id = request.args.get('id', type=int)
-    found_user = User.query.filter_by(id=user_id).first()
+    found_user = current_user
     title = request.args.get('title', type=str)
     content = request.args.get('content', type=str)
     date = request.args.get('date', type=str)
