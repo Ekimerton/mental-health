@@ -38,6 +38,7 @@ class Calendar extends Component {
         let entryScore;
         for (let i = 0; i < this.state.posts.length; i++){
             // loop through array until matching entry
+            console.log(this.state.posts[i].date);
             if (this.state.posts[i].date === entryDate){
                 // sets mood rate of the entry
                 entryScore = this.state.posts[i].score;
