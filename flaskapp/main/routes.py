@@ -8,15 +8,11 @@ from flaskapp.main.nlp import get_sentiment_score, get_document
 main = Blueprint("main", __name__)
 
 @main.route('/', methods=['GET', 'POST'])
-def default():
-    return render_template('public/index.html')
-
 @main.route('/home', methods=['GET', 'POST'])
-def home():
-    if current_user.is_authenticated:
-        return render_template("home.html", curr=current_user.username)
-    else:
-        return render_template("home.html")
+def default():
+    if not current_user.is_authenticated:
+        return redirect(url_for('main.landing'))
+    return render_template('public/index.html')
 
 @main.route('/landing', methods=['GET', 'POST'])
 def landing():
