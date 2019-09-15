@@ -13,131 +13,59 @@
             <fieldset class="form-group">
 
                 <div class="form-group">
-                    <table>
-                        <tr>
-                            <td width="50%">
-                                {{ form.username.label(class="form-control-label") }}
-                                {% if form.username.errors %}
-                                {{ form.username(class="form-control form-control-lg is-invalid") }}
-                            </td>
-                            <td width="50%">
-
-                            </td>
-                        </tr>
-                    </table>
+                    {{ form.username.label(class="form-control-label") }}
+                    {% if form.username.errors %}
+                    {{ form.username(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.username.errors %}
                         <span>{{ error }}</span>
                         {% endfor %}
                     </div>
-                    <table>
-                        <tr>
-                            <td width="50%">
-
-                            </td>
-                            <td width="50%">
-                                {% else %}
-                                {{ form.username(class="form-control form-control-lg") }}
-                                {% endif %}
-                            </td>
-                        </tr>
-                    </table>
+                    {% else %}
+                    {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
 
                 <div class="form-group">
-                    <table>
-                        <tr>
-                            <td width="50%">
-                                {{ form.email.label(class="form-control-label") }}
-                                {% if form.email.errors %}
-                                {{ form.email(class="form-control form-control-lg is-invalid") }}
-                            </td>
-                            <td width="50%">
-
-                            </td>
-                        </tr>
-                    </table>
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.email.errors %}
                         <span>{{ error }}</span>
                         {% endfor %}
                     </div>
-                    <table>
-                        <tr>
-                            <td width="50%">
-
-                            </td>
-                            <td width="50%">
-                                {% else %}
-                                {{ form.email(class="form-control form-control-lg") }}
-                                {% endif %}
-                            </td>
-                        </tr>
-                    </table>
+                    {% else %}
+                    {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
 
                 <div class="form-group">
-                    <table>
-                        <tr>
-                            <td width="50%">
-                                {{ form.password.label(class="form-control-label") }}
-                                {% if form.password.errors %}
-                                {{ form.password(class="form-control form-control-lg is-invalid") }}
-                            </td>
-                            <td width="50%">
-
-                            </td>
-                        </tr>
-                    </table>
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                    {{ form.password(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.password.errors %}
                         <span>{{ error }}</span>
                         {% endfor %}
                     </div>
-                    <table>
-                        <tr>
-                            <td width="50%">
-
-                            </td>
-                            <td width="50%">
-                                {% else %}
-                                {{ form.password(class="form-control form-control-lg") }}
-                                {% endif %}
-                            </td>
-                        </tr>
-                    </table>
+                    {% else %}
+                    {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
 
                 <div class="form-group">
-                    <table>
-                        <tr>
-                            <td width="50%">
-                                {{ form.confirm_password.label(class="form-control-label") }}
-                                {% if form.confirm_password.errors %}
-                                {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-                            </td>
-                            <td width="50%">
-
-                            </td>
-                        </tr>
-                    </table>
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.confirm_password.errors %}
                         <span>{{ error }}</span>
                         {% endfor %}
                     </div>
-                    <table>
-                        <tr>
-                            <td width="50%">
-
-                            </td>
-                            <td width="50%">
-                                {% else %}
-                                {{ form.confirm_password(class="form-control form-control-lg") }}
-                                {% endif %}
-                            </td>
-                        </tr>
-                    </table>
+                    {% else %}
+                    {{ form.confirm_password(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
 
             </fieldset>
