@@ -18,21 +18,19 @@ class Graph extends Component {
         }
     }
 
-    setAxis() {
-        for (let i = 0; i < this.state.posts.length; i++){
-            console.log(this.state.posts[i].date);
-            console.log(this.state.posts[i].score);
-            this.state.entryDate.push(this.state.posts[i].date);
-            this.state.entryScore.push(this.state.posts[i].score);
-        }
-    }
-
     componentDidMount() {
         fetch('http://mental-health-api.herokuapp.com/get_calendar')
             .then(response => response.json())
             .then(({ posts }) => {
-                this.setState({ posts });
-                this.setAxis();
+                var entryDate = [];
+                var entryScore = [];
+                for (let i = 0; i < posts.length; i++){
+                    console.log(posts[i].date);
+                    console.log(posts[i].score);
+                    entryDate.push(posts[i].date);
+                    entryScore.push(posts[i].score);
+                }
+                this.setState({ posts, entryDate, entryScore });
             });
     }
 
