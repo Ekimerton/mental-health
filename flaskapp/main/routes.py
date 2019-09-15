@@ -11,7 +11,7 @@ main = Blueprint("main", __name__)
 def default():
     if not current_user.is_authenticated:
         return redirect(url_for('main.landing'))
-    return render_template('public/index.html')
+    return render_template('build/index.html')
 
 @main.route('/landing', methods=['GET', 'POST'])
 def landing():
