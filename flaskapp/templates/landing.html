@@ -1,3 +1,24 @@
-<p> Welcome to mental health</p>
-<a href="{{url_for('main.register')}}"> Register </a>
-<a href="{{url_for('main.login')}}"> Login </a>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>E-motion</title>
+        <link rel="stylesheet" type="text/css" href="landing.css" media="screen" />
+    </head>
+    <body>
+    <div class="text-center m-t-200">
+        <img src="EmotionLogo.png" alt="logo" height="100" width="579"/>
+        <h1 class="m-t-100">Welcome!</h1>
+        <h2>Free your mind.</h2>
+        <table class="w-100 m-t-200">
+            <tr>
+                <td width="50%">
+                    <a href="{{url_for('main.register')}}"> Register </a>
+                </td>
+                <td width="50%">
+                    <a href="{{url_for('main.login')}}"> Login </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </body>
+</html>
