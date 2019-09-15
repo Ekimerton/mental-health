@@ -2,15 +2,6 @@ import React, {Component} from 'react';
 import DatePicker from 'react-calendar';
 import './Calendar.css';
 
-// dummy data for now
-let moodData = [
-    ["2019-09-14", 60],
-    ["2019-09-13", 70],
-    ["2019-09-12", 75],
-    ["2019-09-11", 80],
-    ["2019-09-10", 90],
-    ["2019-09-09", 70],
-];
 
 class Calendar extends Component {
 
@@ -19,7 +10,7 @@ class Calendar extends Component {
         this.state = {
             today: new Date(),
             selectedDate : new Date(),
-            data: null,
+            posts: [],
         };
         this.onClickDay = this.onClickDay.bind(this);
         this.setMoodColor = this.setMoodColor.bind(this);
@@ -28,8 +19,9 @@ class Calendar extends Component {
     componentDidMount() {
         fetch('http://mental-health-api.herokuapp.com/get_calendar')
             .then(response => response.json())
-            .then(data => this.setState({ data }));
-        console.log("Data" + this.state.data);
+            .then(({ posts }) => {
+                this.setState({ posts });
+            });
     }
 
     // onClickDay(date) sets the selectedDate and opens the corresponding entry
@@ -40,15 +32,16 @@ class Calendar extends Component {
 
     // setMoodColor(date) sets the mood coloring scale for the given date
     // if there was an entry on that date (else leaves it blank)
-    setMoodColor({ date }) {
+    setMoodColor({date}) {
         // format given date
-        let entryDate = date.toISOString().substr(0, 10);
+        let entryDate = new Date(date).toISOString().substr(0, 10);
         let entryScore;
-        for (let i = 0; i < moodData.length; i++){
+        for (let i = 0; i < this.state.posts.length; i++){
             // loop through array until matching entry
-            if (moodData[i][0] === entryDate){
+            console.log(this.state.posts[i].date);
+            if (this.state.posts[i].date === entryDate){
                 // sets mood rate of the entry
-                entryScore = moodData[i][1];
+                entryScore = this.state.posts[i].score;
                 break;
             }
         }
@@ -69,6 +62,7 @@ class Calendar extends Component {
             <div>
                 <h1 className="text-center">Your mood calendar!</h1>
                 <DatePicker
+                    key={Math.random().toString()}
                     // can't have future entries
                     maxDate={this.state.today}
                     // select an entry

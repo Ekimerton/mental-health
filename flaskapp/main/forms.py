@@ -25,4 +25,5 @@ class LoginForm(FlaskForm):
 class PostForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     content = TextAreaField("Entry", validators=[DataRequired()])
+    date = StringField("Date", validators=[DataRequired()])
     submit = SubmitField("Submit")

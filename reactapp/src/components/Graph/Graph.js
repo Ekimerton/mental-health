@@ -11,8 +11,27 @@ class Graph extends Component {
                 legend: {
                     display: false
                 }
-            }
+            },
+            posts: [],
+            entryDate: [],
+            entryScore: [],
         }
+    }
+
+    componentDidMount() {
+        fetch('http://mental-health-api.herokuapp.com/get_calendar')
+            .then(response => response.json())
+            .then(({ posts }) => {
+                var entryDate = [];
+                var entryScore = [];
+                for (let i = 0; i < posts.length; i++){
+                    console.log(posts[i].date);
+                    console.log(posts[i].score);
+                    entryDate.push(posts[i].date);
+                    entryScore.push(posts[i].score);
+                }
+                this.setState({ posts, entryDate, entryScore });
+            });
     }
 
     render() {
@@ -26,7 +45,7 @@ class Graph extends Component {
             gradientStroke.addColorStop(1, "#f49080");
             return {
                 // set x-axis labels
-                labels: ['Sep 01', 'Sep 02', 'Sep 03', 'Sep 04', 'Sep 05', 'Sep 06', 'Sep 07', 'Sep 08', 'Sep 09', 'Sep 10', 'Sep 11', 'Sep 12', 'Sep 13', 'Sep 14'],
+                labels: this.state.entryDate,
                 // customize data
                 datasets: [
                     {
@@ -49,7 +68,7 @@ class Graph extends Component {
                         pointRadius: 1,
                         pointHitRadius: 10,
                         // y-axis data
-                        data: [85, 84, 85, 86, 90, 80, 70, 60, 50, 10, 20, 70, 40, 3]
+                        data: this.state.entryScore,
                     }
                 ]
             }
@@ -60,6 +79,7 @@ class Graph extends Component {
                 <Line
                     data={moodData}
                     options={this.state.options}
+                    redraw
                 />
             </div>
         );

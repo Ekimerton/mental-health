@@ -58,8 +58,9 @@ def load_user(user_id):
 def post():
     form = PostForm()
     if form.validate_on_submit():
-        score = get_sentiment_score(get_document(form.content.data)) * 100
-        post = Post(title=form.title.data, entry=form.content.data, author=current_user, score=score) 
+        print(form.content.data)
+        score = get_sentiment_score(get_document(str(form.content.data))) * 100
+        post = Post(title=form.title.data, entry=form.content.data, author=current_user, score=score, date=form.date.data) 
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.default'))
@@ -71,8 +72,12 @@ def posts():
     found_user = current_user
     posts_json = []
     for post in found_user.posts:
-        posts_json.append({"post_id":post.id, "title":post.title, "entry":post.entry,
-         "score":post.score, "date":(str(post.date.year).zfill(4) + "-" + str(post.date.month).zfill(2) + "-" + str(post.date.day).zfill(2))})
+        try:
+            posts_json.append({"post_id":post.id, "title":post.title, "entry":post.entry,
+            "score":post.score, "date":(str(post.date.year).zfill(4) + "-" + str(post.date.month).zfill(2) + "-" + str(post.date.day).zfill(2))})
+        except:
+            posts_json.append({"post_id":post.id, "title":post.title, "entry":post.entry,
+            "score":post.score, "date":post.date})
     return jsonify(
         posts=posts_json,
         username=found_user.username,
@@ -84,7 +89,7 @@ def new_post():
     found_user = current_user
     title = request.args.get('title', type=str)
     content = request.args.get('content', type=str)
-    score = get_sentiment_score(get_document(form.content.data)) * 100
+    score = get_sentiment_score(get_document(content)) * 100
     post = Post(title=title, entry=content, author=found_user, score=score)
     db.session.add(post)
     db.session.commit()
