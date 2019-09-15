@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify, send_from_directory
 from flask_login import login_user, current_user, logout_user, login_required
 from flaskapp import db, bcrypt, login_manager
-from flaskapp.main.forms import RegistrationForm, LoginForm
+from flaskapp.main.forms import RegistrationForm, LoginForm, PostForm
 from flaskapp.models import User, Post
 from flaskapp.main.nlp import get_sentiment_score, get_document
 
@@ -53,6 +53,16 @@ def logout():
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
+
+@main.route("/post")
+def post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, entry=form.content.data)
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('main.default'))
+    render_template("post.html", form=form)
 
 # Api
 @main.route("/user")
