@@ -62,7 +62,7 @@ def post():
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.default'))
-    render_template("post.html", form=form)
+    return render_template("post.html", form=form)
 
 # Api
 @main.route("/user")
