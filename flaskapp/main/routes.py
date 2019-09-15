@@ -94,6 +94,18 @@ def get_calendar():
     return jsonify(
         posts=posts_json
     )
+
+@main.route("/custom_post", methods=['GET', 'POST'])
+def custom_post():
+    user_id = request.args.get('id', type=int)
+    found_user = User.query.filter_by(id=user_id).first()
+    title = request.args.get('title', type=str)
+    content = request.args.get('content', type=str)
+    date = request.args.get('date', type=str)
+    post = Post(title=title, entry=content, author=found_user, date=date)
+    db.session.add(post)
+    db.session.commit()
+
 # Create db
 
 @main.route("/create_db", methods=['GET', 'POST'])
