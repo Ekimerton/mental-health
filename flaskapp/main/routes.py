@@ -83,3 +83,8 @@ def new_post():
     post = Post(title=title, entry=content, author=found_user)
     db.session.add(post)
     db.session.commit()
+
+@main.route("/create_db", methods=['GET', 'POST'])
+def create_db():
+    from flaskapp import db
+    db.create_all()
