@@ -10,7 +10,7 @@ class Calendar extends Component {
         this.state = {
             today: new Date(),
             selectedDate : new Date(),
-            data: null,
+            posts: [],
         };
         this.onClickDay = this.onClickDay.bind(this);
         this.setMoodColor = this.setMoodColor.bind(this);
@@ -19,8 +19,8 @@ class Calendar extends Component {
     componentDidMount() {
         fetch('http://mental-health-api.herokuapp.com/get_calendar')
             .then(response => response.json())
-            .then((data) => {
-                this.setState( data );
+            .then(({ posts }) => {
+                this.setState({ posts });
             });
     }
 
