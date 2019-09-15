@@ -84,7 +84,20 @@ def new_post():
     db.session.add(post)
     db.session.commit()
 
+@main.route("/get_calendar", methods=['GET', 'POST'])
+def get_calendar():
+    user_id = request.args.get('id', type=int)
+    found_user = User.query.filter_by(id=user_id).first()
+    posts_json = []
+    for post in found_user.posts:
+        posts_json.append({'score':post.score, "date":(str(post.date.year).zfill(4) + "-" + str(post.date.month).zfill(2) + "-" + str(post.date.day).zfill(2))})
+    return jsonify(
+        posts=posts_json
+    )
+# Create db
+
 @main.route("/create_db", methods=['GET', 'POST'])
 def create_db():
     from flaskapp import db
     db.create_all()
+    return redirect(url_for('main.home'))
