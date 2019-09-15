@@ -20,7 +20,7 @@ class TitleList extends React.Component {
         for (var i = 0; i < data.posts.length; i++) {
           console.log(data.posts[i])
           var entry = {
-            title: data.posts[i].entry.substring(0, 30),
+            title: data.posts[i].entry.substring(0, 50),
             date: data.posts[i].date,
             score: data.posts[i].score
           }
