@@ -4,15 +4,16 @@ import './Calendar.css';
 
 // dummy data for now
 const moodData = [
-    ["2019-09-14", true, 10],
-    ["2019-09-13", false, ""],
-    ["2019-09-12", true, 90],
-    ["2019-09-11", true,  3],
-    ["2019-09-10", true,  40],
-    ["2019-09-09", true,  70],
+    ["2019-09-14", 10],
+    ["2019-09-13", 32],
+    ["2019-09-12", 90],
+    ["2019-09-11", 3],
+    ["2019-09-10", 40],
+    ["2019-09-09", 70],
 ];
 
 class Calendar extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +21,27 @@ class Calendar extends Component {
             selectedDate : new Date()
         };
         this.onClickDay = this.onClickDay.bind(this);
-        this.setMoodColor =this.setMoodColor.bind(this);
+        this.setMoodColor = this.setMoodColor.bind(this);
+        this.getAllEntries = this.getAllEntries().bind(this);
+    }
+
+    componentDidMount() {
+        this.getAllEntries();
+    }
+
+    getAllEntries() {
+        // create a new XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+
+        // get a callback when the server responds
+        xhr.addEventListener('load', () => {
+            // update the state of the component with the result here
+            console.log(xhr.responseText)
+        });
+        // open the request with the verb and the url
+        xhr.open('GET', 'http://mental-health-api.herokuapp.com/get_calendar?id=1');
+        // send the request
+        xhr.send()
     }
 
     // onClickDay(date) sets the selectedDate and opens the corresponding entry
@@ -34,31 +55,22 @@ class Calendar extends Component {
     setMoodColor({ date }) {
         // format given date
         let entryDate = date.toISOString().substr(0, 10);
-        let isEntry;
         let entryScore;
         for (let i = 0; i < moodData.length; i++){
             // loop through array until matching entry
             if (moodData[i][0] === entryDate){
-                // checks if there was an entry on the given date
-                isEntry = moodData[i][1];
-                if (isEntry) {
-                    // sets mood rate of the entry
-                    entryScore = moodData[i][2];
-                }
+                // sets mood rate of the entry
+                entryScore = moodData[i][1];
                 break;
             }
         }
         // sets mood coloring
-        if (isEntry) {
-            if (entryScore >= 75) {
-                return 'good-mood';
-            } else if (entryScore >= 45) {
-                return 'medium-mood';
-            } else {
-                return 'bad-mood';
-            }
+        if (entryScore >= 75) {
+            return 'good-mood';
+        } else if (entryScore >= 45) {
+            return 'medium-mood';
         } else {
-            return 'no-entry';
+            return 'bad-mood';
         }
     }
 
