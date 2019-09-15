@@ -62,6 +62,7 @@ class Calendar extends Component {
             <div>
                 <h1 className="text-center">Your mood calendar!</h1>
                 <DatePicker
+                    key={Math.random().toString()}
                     // can't have future entries
                     maxDate={this.state.today}
                     // select an entry
