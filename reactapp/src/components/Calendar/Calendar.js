@@ -36,11 +36,11 @@ class Calendar extends Component {
         // format given date
         let entryDate = date.toISOString().substr(0, 10);
         let entryScore;
-        for (let i = 0; i < this.state.post.length; i++){
+        for (let i = 0; i < this.state.posts.length; i++){
             // loop through array until matching entry
-            if (this.state.post[i].date === entryDate){
+            if (this.state.posts[i].date === entryDate){
                 // sets mood rate of the entry
-                entryScore = this.state.post[i].score;
+                entryScore = this.state.posts[i].score;
                 break;
             }
         }
