@@ -58,8 +58,7 @@ def load_user(user_id):
 # Api
 @main.route("/user")
 def posts():
-    user_id = request.args.get('id', type=int)
-    found_user = User.query.filter_by(id=user_id).first()
+    found_user = current_user
     posts_json = []
     for post in found_user.posts:
         posts_json.append({"post_id":post.id, "title":post.title, "entry":post.entry,
@@ -82,8 +81,7 @@ def new_post():
 
 @main.route("/get_calendar", methods=['GET', 'POST'])
 def get_calendar():
-    user_id = request.args.get('id', type=int)
-    found_user = User.query.filter_by(id=user_id).first()
+    found_user = current_user
     posts_json = []
     for post in found_user.posts:
         posts_json.append({'score':post.score, "date":(str(post.date.year).zfill(4) + "-" + str(post.date.month).zfill(2) + "-" + str(post.date.day).zfill(2))})
