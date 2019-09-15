@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.17",
+    "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "draft-js": "^0.11.0",
     "immutable": "^4.0.0-rc.12",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-calendar": "^2.19.2",
     "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.9.0",
     "react-icons-kit": "^1.1.6",

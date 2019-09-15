@@ -142,7 +142,8 @@ class Title extends Component {
                     borderRadius: "4.5px"
                 }}>
 
-                    <TextEditor editable={this.props.editable} jsonData={{
+                    <TextEditor editable={this.props.editable}
+                                jsonData={{
                         "object": "value",
                         "document": {
                             "object": "document",
