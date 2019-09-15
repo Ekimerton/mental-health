@@ -40,15 +40,15 @@
     color: #301934 !important;
 }
 
-.good-mood {
-     background: #90EE90;
+.great-mood {
+     background: #80b6f4;
  }
-.medium-mood {
-    background: #FFA500;
+.good-mood {
+     background: #94d973;
+}
+.ok-mood {
+    background: #fad874;
 }
 .bad-mood {
-    background: #FF0000;
-}
-.no-entry {
-    background: transparent;
+    background: #f49080;
 }
