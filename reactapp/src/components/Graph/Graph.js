@@ -21,7 +21,7 @@ class Graph extends Component {
     setAxis() {
         for (let i = 0; i < this.state.posts.length; i++){
             this.state.entryDate.push(this.state.posts[i].date);
-            this.state.entryScore.push(this.posts[i].score);
+            this.state.entryScore.push(this.state.posts[i].score);
         }
     }
 
