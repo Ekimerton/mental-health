@@ -58,6 +58,7 @@ def load_user(user_id):
 def post():
     form = PostForm()
     if form.validate_on_submit():
+        print(get_sentiment_score(get_document(form.content.data)))
         post = Post(title=form.title.data, entry=form.content.data, author=current_user, score=get_sentiment_score(get_document(form.content.data)))
         db.session.add(post)
         db.session.commit()
