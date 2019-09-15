@@ -15,10 +15,13 @@ import divWithClassName from "react-bootstrap/es/utils/divWithClassName";
 
 
 export default class TextEditor extends Component {
-    state = {
-        value: Value.fromJSON(this.props.jsonData)
-
-    };
+    constructor(props) {
+      super(props)
+      this.state = {
+          value: Value.fromJSON(this.props.jsonData)
+      };
+      this.submitEntry = this.submitEntry.bind(this);
+    }
 
     // componentDidMount() {
     // 	this.setState({value:Value.fromJSON(this.props.jsonData)})
@@ -119,23 +122,20 @@ export default class TextEditor extends Component {
     };
 
     submitEntry() {
-        alert("submit")
+        //alert("submit")
         // create a new XMLHttpRequest
         const xhr = new XMLHttpRequest();
         // get a callback when the server responds
         xhr.addEventListener('load', () => {
         });
         // open the request with the verb and the url
-        xhr.open('POST', 'http://mental-health-api.herokuapp.com/new_post?user_id=1&title=testTitle&content=ILikeContentAndAmAfraidOfSpaces');
+        xhr.open('POST', '/new_post?user_id=1&title=testTitle&content='+this.state.value.document.text);
         // send the request
         xhr.send()
-
-
     }
 
 
     render() {
-
         if (this.props.editable == "True") {
             return (
                 <div>
@@ -180,6 +180,7 @@ export default class TextEditor extends Component {
                         />
 
                         {/*<Button variant="success"*/}
+                        <Button variant="success" onClick={this.submitEntry} style={{margin:"20px"}}>Submit</Button>
                         {/*onClick={this.submitEntry()}*/}
                         {/*>Success</Button>*/}
 

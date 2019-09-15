@@ -9,7 +9,7 @@ main = Blueprint("main", __name__)
 
 @main.route('/', methods=['GET', 'POST'])
 def default():
-    return render_template('public/index.html')
+    return render_template('build/index.html')
 
 @main.route('/home', methods=['GET', 'POST'])
 def home():
