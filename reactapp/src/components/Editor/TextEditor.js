@@ -129,7 +129,8 @@ export default class TextEditor extends Component {
         xhr.addEventListener('load', () => {
         });
         // open the request with the verb and the url
-        xhr.open('POST', '/new_post?user_id=1&title=testTitle&content='+this.state.value.document.text);
+        xhr.open('POST', '/new_post?title=testTitle&content='+this.state.value.document.text);
+        console.log(this.state.value.document.text);
         // send the request
         xhr.send()
     }
