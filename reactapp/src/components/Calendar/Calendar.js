@@ -30,7 +30,7 @@ class Calendar extends Component {
         fetch('http://mental-health-api.herokuapp.com/get_calendar')
             .then(response => response.json())
             .then(data => this.setState({ data }));
-        console.log(this.state.data);
+        console.log("Data" + this.state.data);
     }
 
     // onClickDay(date) sets the selectedDate and opens the corresponding entry
@@ -54,10 +54,12 @@ class Calendar extends Component {
             }
         }
         // sets mood coloring
-        if (entryScore >= 75) {
+        if (entryScore >= 85) {
+            return 'great-mood';
+        } else if (entryScore >= 65) {
             return 'good-mood';
         } else if (entryScore >= 45) {
-            return 'medium-mood';
+            return 'ok-mood';
         } else {
             return 'bad-mood';
         }
