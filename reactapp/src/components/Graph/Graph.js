@@ -81,6 +81,7 @@ class Graph extends Component {
                 <Line
                     data={moodData}
                     options={this.state.options}
+                    redraw
                 />
             </div>
         );
