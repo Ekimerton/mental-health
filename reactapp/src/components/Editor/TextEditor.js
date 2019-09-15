@@ -139,7 +139,6 @@ export default class TextEditor extends Component {
         if (this.props.editable == "True") {
             return (
                 <div>
-
                     <Fragment>
                         <FormatToolbar>
                             <button
