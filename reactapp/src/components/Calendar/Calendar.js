@@ -3,9 +3,7 @@ import DatePicker from 'react-calendar';
 import './Calendar.css';
 
 // dummy data for now
-let getCalendarResponse = {
-    posts : []
-};
+let getCalendarResponse;
 let moodData = [
     ["2019-09-14", 60],
     ["2019-09-13", 70],
@@ -29,9 +27,8 @@ class Calendar extends Component {
 
     componentDidMount() {
         fetch('http://mental-health-api.herokuapp.com/get_calendar')
-            .then(response => moodData = getCalendarResponse);
-        moodData = getCalendarResponse.posts;
-        console.log("moodData: " + moodData);
+            .then(response => response.json())
+            .then(data => console.log(data));
     }
 
     // onClickDay(date) sets the selectedDate and opens the corresponding entry
