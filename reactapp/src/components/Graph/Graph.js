@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Line} from 'react-chartjs-2';
+import './Graph.css';
 
 class Graph extends Component {
     constructor(props){
@@ -13,21 +14,6 @@ class Graph extends Component {
             }
         }
     }
-
-    // getAllEntries() {
-    //     // create a new XMLHttpRequest
-    //     const xhr = new XMLHttpRequest();
-    //
-    //     // get a callback when the server responds
-    //     xhr.addEventListener('load', () => {
-    //         // update the state of the component with the result here
-    //         console.log(xhr.responseText)
-    //     });
-    //     // open the request with the verb and the url
-    //     xhr.open('GET', 'https://dog.ceo/api/breeds/list/all');
-    //     // send the request
-    //     xhr.send()
-    // }
 
     render() {
         const moodData = (canvas) => {
@@ -70,7 +56,7 @@ class Graph extends Component {
         };
         return (
             <div>
-                <h1>This is the graph</h1>
+                <h1 className="text-center">Your mood graph!</h1>
                 <Line
                     data={moodData}
                     options={this.state.options}
