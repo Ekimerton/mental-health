@@ -3,7 +3,6 @@ import DatePicker from 'react-calendar';
 import './Calendar.css';
 
 // dummy data for now
-let getCalendarResponse;
 let moodData = [
     ["2019-09-14", 60],
     ["2019-09-13", 70],
@@ -68,7 +67,7 @@ class Calendar extends Component {
     render() {
         return (
             <div>
-                <h1>This is the selected date: {this.state.selectedDate.toDateString()}</h1>
+                <h1 className="text-center">Your mood calendar!</h1>
                 <DatePicker
                     // can't have future entries
                     maxDate={this.state.today}
@@ -76,6 +75,7 @@ class Calendar extends Component {
                     onClickDay={this.onClickDay}
                     // sets the mood coloring scale
                     tileClassName={this.setMoodColor}
+                    className={"w-100"}
                 />
             </div>
         );
