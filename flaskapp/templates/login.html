@@ -27,8 +27,8 @@
                 </div>
                 <table class="w-100">
                     <tr>
-                        <td width="90%">
-                            <div class="form-group">
+                        <td width="59.5%">
+                            <div class="form-group pull-right">
                                 {{ form.password.label(class="form-control-label") }}
                                 {% if form.password.errors %}
                                 {{ form.password(class="form-control form-control-lg is-invalid") }}
@@ -42,8 +42,8 @@
                                 {% endif %}
                             </div>
                         </td>
-                        <td width="10%">
-                            <div class="form-check">
+                        <td width="40.5%">
+                            <div class="form-check pull-right">
                                 {{ form.remember(class="form-check-input") }}
                                 {{ form.remember.label(class="form-check-label") }}
                             </div>
@@ -51,7 +51,7 @@
                     </tr>
                 </table>
             </fieldset>
-            <div class="form-group">
+            <div class="form-group m-t-10">
                 {{ form.submit(class="btn btn-outline-dark") }}
             </div>
         </form>
