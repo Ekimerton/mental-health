@@ -22,7 +22,7 @@ class Calendar extends Component {
         };
         this.onClickDay = this.onClickDay.bind(this);
         this.setMoodColor = this.setMoodColor.bind(this);
-        this.getAllEntries = this.getAllEntries().bind(this);
+        this.getAllEntries = this.getAllEntries.bind(this);
     }
 
     componentDidMount() {

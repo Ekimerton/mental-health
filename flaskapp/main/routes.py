@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify
+from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify, send_from_directory
 from flask_login import login_user, current_user, logout_user, login_required
 from flaskapp import db, bcrypt, login_manager
 from flaskapp.main.forms import RegistrationForm, LoginForm
@@ -9,7 +9,7 @@ main = Blueprint("main", __name__)
 
 @main.route('/', methods=['GET', 'POST'])
 def default():
-    return redirect(url_for('main.landing'))
+    return render_template('public/index.html')
 
 @main.route('/home', methods=['GET', 'POST'])
 def home():
