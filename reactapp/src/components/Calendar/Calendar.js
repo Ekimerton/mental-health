@@ -32,9 +32,9 @@ class Calendar extends Component {
 
     // setMoodColor(date) sets the mood coloring scale for the given date
     // if there was an entry on that date (else leaves it blank)
-    setMoodColor(date) {
+    setMoodColor({date}) {
         // format given date
-        let entryDate = date.toISOString().substr(0, 10);
+        let entryDate = new Date(date).toISOString().substr(0, 10);
         let entryScore;
         for (let i = 0; i < this.state.posts.length; i++){
             // loop through array until matching entry
