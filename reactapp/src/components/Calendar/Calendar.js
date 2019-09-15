@@ -27,9 +27,7 @@ class Calendar extends Component {
 
     componentDidMount() {
         fetch('http://mental-health-api.herokuapp.com/get_calendar')
-            .then(response => response.json())
-            .then(data => this.setState({ data }));
-        console.log("Data" + this.state.data);
+            .then(response => console.log(response));
     }
 
     // onClickDay(date) sets the selectedDate and opens the corresponding entry
