@@ -20,8 +20,8 @@ class Graph extends Component {
 
     setAxis() {
         for (let i = 0; i < this.state.posts.length; i++){
-            this.state.posts.push(this.state.posts[i].date);
-            this.state.posts.push(this.posts[i].score);
+            this.state.entryDate.push(this.state.posts[i].date);
+            this.state.entryScore.push(this.posts[i].score);
         }
     }
 
