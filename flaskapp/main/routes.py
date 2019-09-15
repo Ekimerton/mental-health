@@ -11,7 +11,7 @@ main = Blueprint("main", __name__)
 def default():
     if not current_user.is_authenticated:
         return redirect(url_for('main.landing'))
-    return render_template('public/index.html')
+    return render_template('build/index.html')
 
 @main.route('/landing', methods=['GET', 'POST'])
 def landing():
@@ -20,7 +20,7 @@ def landing():
 @main.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for("main.home"))
+        return redirect(url_for("main.default"))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_pass = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -34,7 +34,7 @@ def register():
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("main.home"))
+        return redirect(url_for("main.default"))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -48,7 +48,7 @@ def login():
 @main.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("main.home"))
+    return redirect(url_for("main.landing"))
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -105,4 +105,4 @@ def custom_post():
 def create_db():
     from flaskapp import db
     db.create_all()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.landing'))
