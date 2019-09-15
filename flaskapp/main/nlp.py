@@ -31,6 +31,6 @@ def get_sentiment_score(document):
     response = requests.post(endpoint, headers=headers, json=document)
 
     sentiments = json.loads(response.text)
-    print(sentiments["documents"][0]["score"])
+    return sentiments["documents"][0]["score"]
 
 # get_sentiment_score(get_document("i'm really happy"))
