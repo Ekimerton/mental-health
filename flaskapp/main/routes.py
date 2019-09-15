@@ -60,7 +60,7 @@ def post():
     if form.validate_on_submit():
         print(form.content.data)
         score = get_sentiment_score(get_document(str(form.content.data))) * 100
-        post = Post(title=form.title.data, entry=form.content.data, author=current_user, score=score) 
+        post = Post(title=form.title.data, entry=form.content.data, author=current_user, score=score, date=form.date.data) 
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.default'))
