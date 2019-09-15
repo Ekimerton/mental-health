@@ -8,7 +8,6 @@ from flaskapp.main.nlp import get_sentiment_score, get_document
 main = Blueprint("main", __name__)
 
 @main.route('/', methods=['GET', 'POST'])
-@main.route('/home', methods=['GET', 'POST'])
 def default():
     if not current_user.is_authenticated:
         return redirect(url_for('main.landing'))
@@ -77,6 +76,7 @@ def new_post():
     post = Post(title=title, entry=content, author=found_user)
     db.session.add(post)
     db.session.commit()
+    return redirect(url_for('main.default'))
 
 @main.route("/get_calendar", methods=['GET', 'POST'])
 def get_calendar():
@@ -97,6 +97,7 @@ def custom_post():
     post = Post(title=title, entry=content, author=found_user, date=date)
     db.session.add(post)
     db.session.commit()
+    return redirect(url_for('main.default'))
 
 # Create db
 
