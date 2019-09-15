@@ -26,7 +26,7 @@ class Calendar extends Component {
     }
 
     componentDidMount() {
-        fetch('http://mental-health-api.herokuapp.com/get_calendar')
+        fetch('http://mental-health-api.herokuapp.com/get_user')
             .then(response => console.log(response));
     }
 
