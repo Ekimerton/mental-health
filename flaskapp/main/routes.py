@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, jsonify, send_from_directory
 from flask_login import login_user, current_user, logout_user, login_required
 from flaskapp import db, bcrypt, login_manager
-from flaskapp.main.forms import RegistrationForm, LoginForm
+from flaskapp.main.forms import RegistrationForm, LoginForm, PostForm
 from flaskapp.models import User, Post
 from flaskapp.main.nlp import get_sentiment_score, get_document
 
@@ -54,6 +54,17 @@ def logout():
 def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
 
+@main.route("/post", methods=['GET', 'POST'])
+def post():
+    form = PostForm()
+    if form.validate_on_submit():
+        score = get_sentiment_score(get_document(form.content.data)) * 100
+        post = Post(title=form.title.data, entry=form.content.data, author=current_user, score=score) 
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('main.default'))
+    return render_template("post.html", form=form)
+
 # Api
 @main.route("/user")
 def posts():
@@ -73,7 +84,8 @@ def new_post():
     found_user = current_user
     title = request.args.get('title', type=str)
     content = request.args.get('content', type=str)
-    post = Post(title=title, entry=content, author=found_user)
+    score = get_sentiment_score(get_document(form.content.data)) * 100
+    post = Post(title=title, entry=content, author=found_user, score=score)
     db.session.add(post)
     db.session.commit()
     return redirect(url_for('main.default'))
